@@ -6,6 +6,7 @@ import com.stripe.model.PaymentLink;
 import com.stripe.model.Price;
 import com.stripe.param.PaymentLinkCreateParams;
 import com.stripe.param.PriceCreateParams;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Service;
 @Primary
 public class StripePaymentGateway implements  PaymentGateway {
 
-    public String apiKey = "sk_test_51RpPvCEawZzebjJBJHbuOhyQSqK1YakaYK64ggRtgGVXs6cuB6WzSjEQMIvOoUHLrB51V4PrD2pLuFWDxP75qAQU00ARdCCFql";
+    @Value("${stripe.api.key}")
+    private String apiKey;
 
     @Override
     public String generatePaymentLink() {
